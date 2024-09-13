@@ -1,1 +1,32 @@
-spring.application.name=ContactManagerBackend
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/contact_manager
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    generate-ddl: true
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        globally_quoted_identifiers: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 1000MB
+      max-request-size: 1000MB
+  mvc:
+    throw-exception-if-no-handler-found: true
+    async:
+      request-timeout: 3600000
+  config:
+    import: secret.properties
+
+server:
+  port: 8000
+  error:
+    path: /user/error
+    whitelabel:
+      enabled: false
